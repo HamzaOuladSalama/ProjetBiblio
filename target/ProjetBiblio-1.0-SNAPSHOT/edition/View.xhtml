@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewEditionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewEditionLabel_date}"/>
+                    <h:outputText value="#{editionController.selected.date}" title="#{bundle.ViewEditionTitle_date}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewEditionLabel_langue}"/>
+                    <h:outputText value="#{editionController.selected.langue}" title="#{bundle.ViewEditionTitle_langue}"/>
+                    <h:outputText value="#{bundle.ViewEditionLabel_idEditeur}"/>
+                    <h:outputText value="#{editionController.selected.idEditeur}" title="#{bundle.ViewEditionTitle_idEditeur}"/>
+                    <h:outputText value="#{bundle.ViewEditionLabel_editeur}"/>
+                    <h:outputText value="#{editionController.selected.editeur}" title="#{bundle.ViewEditionTitle_editeur}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{editionController.destroyAndView}" value="#{bundle.ViewEditionDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewEditionEditLink}"/>
+                <br />
+                <h:commandLink action="#{editionController.prepareCreate}" value="#{bundle.ViewEditionCreateLink}" />
+                <br />
+                <h:commandLink action="#{editionController.prepareList}" value="#{bundle.ViewEditionShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewEditionIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

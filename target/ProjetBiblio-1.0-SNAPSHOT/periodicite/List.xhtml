@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPeriodiciteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListPeriodiciteEmpty}" rendered="#{periodiciteController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{periodiciteController.items.rowCount > 0}">
+                    <h:outputText value="#{periodiciteController.pagination.pageFirstItem + 1}..#{periodiciteController.pagination.pageLastItem + 1}/#{periodiciteController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{periodiciteController.previous}" value="#{bundle.Previous} #{periodiciteController.pagination.pageSize}" rendered="#{periodiciteController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{periodiciteController.next}" value="#{bundle.Next} #{periodiciteController.pagination.pageSize}" rendered="#{periodiciteController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{periodiciteController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPeriodiciteTitle_issn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.issn}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPeriodiciteTitle_typePeriodicite}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.typePeriodicite}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPeriodiciteTitle_valeurPeriodicite}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valeurPeriodicite}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPeriodiciteTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{periodiciteController.prepareView}" value="#{bundle.ListPeriodiciteViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{periodiciteController.prepareEdit}" value="#{bundle.ListPeriodiciteEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{periodiciteController.destroy}" value="#{bundle.ListPeriodiciteDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{periodiciteController.prepareCreate}" value="#{bundle.ListPeriodiciteCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListPeriodiciteIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

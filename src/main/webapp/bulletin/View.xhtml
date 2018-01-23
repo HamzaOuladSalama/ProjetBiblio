@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewBulletinTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewBulletinLabel_dateParution}"/>
+                    <h:outputText value="#{bulletinController.selected.dateParution}" title="#{bundle.ViewBulletinTitle_dateParution}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewBulletinLabel_numero}"/>
+                    <h:outputText value="#{bulletinController.selected.numero}" title="#{bundle.ViewBulletinTitle_numero}"/>
+                    <h:outputText value="#{bundle.ViewBulletinLabel_resume}"/>
+                    <h:outputText value="#{bulletinController.selected.resume}" title="#{bundle.ViewBulletinTitle_resume}"/>
+                    <h:outputText value="#{bundle.ViewBulletinLabel_id}"/>
+                    <h:outputText value="#{bulletinController.selected.id}" title="#{bundle.ViewBulletinTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewBulletinLabel_exemplarisation}"/>
+                    <h:outputText value="#{bulletinController.selected.exemplarisation}" title="#{bundle.ViewBulletinTitle_exemplarisation}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{bulletinController.destroyAndView}" value="#{bundle.ViewBulletinDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewBulletinEditLink}"/>
+                <br />
+                <h:commandLink action="#{bulletinController.prepareCreate}" value="#{bundle.ViewBulletinCreateLink}" />
+                <br />
+                <h:commandLink action="#{bulletinController.prepareList}" value="#{bundle.ViewBulletinShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewBulletinIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

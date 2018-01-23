@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateNoticeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateNoticeLabel_categorie}" for="categorie" />
+                    <h:inputText id="categorie" value="#{noticeController.selected.categorie}" title="#{bundle.CreateNoticeTitle_categorie}" />
+                    <h:outputLabel value="#{bundle.CreateNoticeLabel_datePublication}" for="datePublication" />
+                    <h:inputText id="datePublication" value="#{noticeController.selected.datePublication}" title="#{bundle.CreateNoticeTitle_datePublication}" />
+                    <h:outputLabel value="#{bundle.CreateNoticeLabel_langue}" for="langue" />
+                    <h:inputText id="langue" value="#{noticeController.selected.langue}" title="#{bundle.CreateNoticeTitle_langue}" />
+                    <h:outputLabel value="#{bundle.CreateNoticeLabel_motscle}" for="motscle" />
+                    <h:inputText id="motscle" value="#{noticeController.selected.motscle}" title="#{bundle.CreateNoticeTitle_motscle}" />
+                    <h:outputLabel value="#{bundle.CreateNoticeLabel_resume}" for="resume" />
+                    <h:inputText id="resume" value="#{noticeController.selected.resume}" title="#{bundle.CreateNoticeTitle_resume}" />
+                    <h:outputLabel value="#{bundle.CreateNoticeLabel_sousTitre}" for="sousTitre" />
+                    <h:inputText id="sousTitre" value="#{noticeController.selected.sousTitre}" title="#{bundle.CreateNoticeTitle_sousTitre}" />
+                    <h:outputLabel value="#{bundle.CreateNoticeLabel_titre}" for="titre" />
+                    <h:inputText id="titre" value="#{noticeController.selected.titre}" title="#{bundle.CreateNoticeTitle_titre}" />
+                    <h:outputLabel value="#{bundle.CreateNoticeLabel_url}" for="url" />
+                    <h:inputText id="url" value="#{noticeController.selected.url}" title="#{bundle.CreateNoticeTitle_url}" />
+                    <h:outputLabel value="#{bundle.CreateNoticeLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{noticeController.selected.id}" title="#{bundle.CreateNoticeTitle_id}" required="true" requiredMessage="#{bundle.CreateNoticeRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateNoticeLabel_livre}" for="livre" />
+                    <h:selectOneMenu id="livre" value="#{noticeController.selected.livre}" title="#{bundle.CreateNoticeTitle_livre}" required="true" requiredMessage="#{bundle.CreateNoticeRequiredMessage_livre}">
+                        <f:selectItems value="#{livreController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{noticeController.create}" value="#{bundle.CreateNoticeSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{noticeController.prepareList}" value="#{bundle.CreateNoticeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateNoticeIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
